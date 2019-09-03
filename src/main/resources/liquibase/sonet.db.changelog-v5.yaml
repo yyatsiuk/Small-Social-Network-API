@@ -1,0 +1,133 @@
+databaseChangeLog:
+  - changeSet:
+      id: 5.0.1
+      author: sonetTeam
+      changes:
+        - createTable:
+            tableName: polls
+            catalogName: db_sonet
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                    unique: true
+              - column:
+                  name: question
+                  type: varchar(255)
+                  defaultValue: ''
+                  constraints:
+                    nullable: false
+              - column:
+                  name: creation_time
+                  type: TIMESTAMP
+                  defaultValue: CURRENT_TIMESTAMP()
+                  constraints:
+                    nullable: false
+              - column:
+                    name: update_time
+                    type: TIMESTAMP
+                    defaultValue: CURRENT_TIMESTAMP()
+                    constraints:
+                      nullable: false
+  - changeSet:
+      id: 5.0.2
+      author: sonetTeam
+      changes:
+        - createTable:
+            tableName: post_polls
+            catalogName: db_sonet
+            columns:
+              - column:
+                  name: post_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_post_id_poll
+                    references: posts(id)
+                    nullable: false
+              - column:
+                  name: poll_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_poll_id_post
+                    references: polls(id)
+                    nullable: false
+                    unique: true
+  - changeSet:
+      id: 5.0.3
+      author: sonetTeam
+      changes:
+        - createTable:
+            tableName: choices
+            catalogName: db_sonet
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                    unique: true
+              - column:
+                  name: text
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: 5.0.4
+      author: sonetTeam
+      changes:
+        - createTable:
+            tableName: poll_choices
+            catalogName: db_sonet
+            columns:
+              - column:
+                  name: poll_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_poll_id_choices
+                    references: polls(id)
+                    nullable: false
+              - column:
+                  name: choice_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_choice_id_poll
+                    references: choices(id)
+                    nullable: false
+                    unique: true
+  - changeSet:
+      id: 5.0.5
+      author: sonetTeam
+      changes:
+        - createTable:
+            tableName: votes
+            catalogName: db_sonet
+            columns:
+              - column:
+                  name: user_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_voteUsers_vote
+                    references: users(actor_id)
+                    nullable: false
+              - column:
+                  name: poll_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_votePolls_vote
+                    references: polls(id)
+                    nullable: false
+              - column:
+                  name: сhoice_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_votesChoises_vote
+                    references: choices(id)
+                    nullable: false
+
+

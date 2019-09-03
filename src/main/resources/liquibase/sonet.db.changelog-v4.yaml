@@ -1,0 +1,145 @@
+databaseChangeLog:
+  - changeSet:
+      id: 4.0.1
+      author: sonetTeam
+      changes:
+        - addPrimaryKey:
+            catalogName: db_sonet
+            schemaName: db_sonet
+            tableName: actor_images
+            constraintName: pk_actor_images
+            columnNames: actor_id, image_id
+  - changeSet:
+      id: 4.0.2
+      author: sonetTeam
+      changes:
+        - addPrimaryKey:
+            catalogName: db_sonet
+            schemaName: db_sonet
+            tableName: actor_technology
+            constraintName: pk_actor_technology
+            columnNames: actor_id, technology_id
+  - changeSet:
+      id: 4.0.3
+      author: sonetTeam
+      changes:
+        - addPrimaryKey:
+            catalogName: db_sonet
+            schemaName: db_sonet
+            tableName: post_images
+            constraintName: pk_post_image_id
+            columnNames: post_id, image_id
+  - changeSet:
+      id: 4.0.4
+      author: sonetTeam
+      changes:
+        - addPrimaryKey:
+            catalogName: db_sonet
+            schemaName: db_sonet
+            tableName: user_chats
+            constraintName: pk_chat_user_id
+            columnNames: chat_id, user_id
+  - changeSet:
+      id: 4.0.5
+      author: sonetTeam
+      changes:
+        - addPrimaryKey:
+            catalogName: db_sonet
+            schemaName: db_sonet
+            tableName: user_group
+            constraintName: pk_user_grop_id
+            columnNames: user_id, group_id
+  - changeSet:
+      id: 4.0.6
+      author: sonetTeam
+      changes:
+        - addPrimaryKey:
+            catalogName: db_sonet
+            schemaName: db_sonet
+            tableName: actor_role
+            constraintName: pk_user_group_id
+            columnNames: actor_id, role_id
+  - changeSet:
+      id: 4.0.7
+      author: sonetTeam
+      changes:
+        - modifyDataType:
+            catalogName: db_sonet
+            chemaName: db_sonet
+            columnName: email_verification
+            newDataType: varchar(255)
+            tableName: users
+
+  - changeSet:
+      id: 4.0.8
+      author: sonetTeam
+      changes:
+        - createTable:
+            tableName: password_reset_tokens
+            catalogName: db_sonet
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: token
+                  type: varchar(255)
+              - column:
+                  name: actor_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_user_actorid_tokens
+                    references: users(actor_id)
+                    nullable: false
+
+  - changeSet:
+      id: 4.0.9
+      author: sonetTeam
+      changes:
+        - dropColumn:
+            catalogName: db_sonet
+            columnName: id
+            schemaName: db_sonet
+            tableName: likes
+  - changeSet:
+      id: 4.1.0
+      author: sonetTeam
+      changes:
+        - addColumn:
+            catalogName: db_sonet
+            columns:
+              - column:
+                  name: caption
+                  type: varchar(255)
+            schemaName: db_sonet
+            tableName: images
+
+  - changeSet:
+      id: 4.1.1
+      author: sonetTeam
+      changes:
+        - createTable:
+            tableName: user_location
+            catalogName: db_sonet
+            columns:
+              - column:
+                  name: user_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_user_location
+                    references: users(actor_id)
+                    nullable: false
+              - column:
+                  name: latitude
+                  type: NUMERIC(6,4)
+              - column:
+                  name: longitude
+                  type: NUMERIC(6,4)
+              - column:
+                  name: update_time
+                  type: TIMESTAMP
+                  defaultValue: CURRENT_TIMESTAMP()

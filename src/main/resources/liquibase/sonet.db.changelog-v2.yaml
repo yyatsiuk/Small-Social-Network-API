@@ -1,0 +1,25 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2.0.1
+      author: sonetTeam
+      changes:
+        - addColumn:
+            catalogName: db_sonet
+            columns:
+              - column:
+                  name: status
+                  type: varchar(25)
+            schemaName: db_sonet
+            tableName: posts
+  - changeSet:
+      id: 2.0.2
+      author: sonetTeam
+      changes:
+        - addColumn:
+            catalogName: db_sonet
+            columns:
+              - column:
+                  name: status
+                  type: varchar(25)
+            schemaName: db_sonet
+            tableName: comments

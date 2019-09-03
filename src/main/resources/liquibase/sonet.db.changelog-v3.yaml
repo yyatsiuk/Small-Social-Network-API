@@ -1,0 +1,171 @@
+databaseChangeLog:
+  - changeSet:
+      id: 3.0.1
+      author: sonetTeam
+      changes:
+        - createTable:
+            tableName: roles
+            catalogName: db_sonet
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: name
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+                    unique: true
+  - changeSet:
+      id: 3.0.2
+      author: sonetTeam
+      changes:
+        - addColumn:
+            catalogName: db_sonet
+            columns:
+              - column:
+                  name: creation_time
+                  type: TIMESTAMP
+                  defaultValue: CURRENT_TIMESTAMP()
+                  constraints:
+                    nullable: false
+              - column:
+                  name: update_time
+                  type: TIMESTAMP
+                  defaultValue: CURRENT_TIMESTAMP()
+                  constraints:
+                    nullable: false
+              - column:
+                  name: avatar_id
+                  type: bigint
+              - column:
+                  name: logo_id
+                  type: bigint
+              - column:
+                  name: background_id
+                  type: bigint
+              - column:
+                  name: nickname
+                  type: varchar(55)
+                  constraints:
+                    nullable: false
+                    unique: true
+            schemaName: db_sonet
+            tableName: actors
+  - changeSet:
+      id: 3.0.3
+      author: sonetTeam
+      changes:
+        - addColumn:
+            catalogName: db_sonet
+            columns:
+              - column:
+                  name: first_name
+                  type: varchar(100)
+              - column:
+                  name: last_name
+                  type: varchar(100)
+              - column:
+                  name: city
+                  type: varchar(100)
+              - column:
+                  name: country
+                  type: varchar(100)
+              - column:
+                  name: planet
+                  type: varchar(100)
+              - column:
+                  name: email_verification
+                  type: varchar(100)
+                  constraints:
+                    nullable: true
+                    unique: true
+            schemaName: db_sonet
+            tableName: users
+  - changeSet:
+      id: 3.0.4
+      author: sonetTeam
+      changes:
+        - createTable:
+            tableName: actor_role
+            catalogName: db_sonet
+            columns:
+              - column:
+                  name: actor_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_actor_id_role
+                    references: actors(id)
+              - column:
+                  name: role_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_role_id_actor
+                    references: roles(id)
+  - changeSet:
+      id: 3.0.5
+      author: sonetTeam
+      changes:
+        - createTable:
+            tableName: comment_likes
+            catalogName: db_sonet
+            columns:
+              - column:
+                  name: post_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_like_id_comment
+                    references: comments(post_id)
+              - column:
+                  name: actor_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    unique: true
+                    foreignKeyName: fk_actor_id_post
+                    references: actors(id)
+  - changeSet:
+      id: 3.0.6
+      author: sonetTeam
+      changes:
+        - addColumn:
+            catalogName: db_sonet
+            columns:
+              - column:
+                  name: creator_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+            schemaName: db_sonet
+            tableName: groups
+  - changeSet:
+      id: 3.0.7
+      author: sonetTeam
+      changes:
+        - createTable:
+            tableName: post_like
+            catalogName: db_sonet
+            columns:
+              - column:
+                  name: post_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    unique: true
+                    foreignKeyName: fk_like_id_post
+                    references: posts(id)
+              - column:
+                  name: actor_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    unique: true
+                    foreignKeyName: fk_actor_id_post_like
+                    references: actors(id)

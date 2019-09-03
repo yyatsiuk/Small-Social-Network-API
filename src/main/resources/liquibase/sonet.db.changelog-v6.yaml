@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - changeSet:
+      id: 6.0.1
+      author: sonetTeam
+      changes:
+        - addColumn:
+            catalogName: db_sonet
+            columns:
+              - column:
+                  name: is_online
+                  type: tinyint(1)
+                  defaultValue: 0
+              - column:
+                  name: last_activity
+                  type: timestamp
+            schemaName: db_sonet
+            tableName: users
