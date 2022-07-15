@@ -27,7 +27,7 @@
         <spring.social.config>1.1.6.RELEASE</spring.social.config>
         <spring.social.secutiry>1.1.6.RELEASE</spring.social.secutiry>
         <javax.mail.version>1.4.7</javax.mail.version>
-        <aws.sdk.s3.version>1.11.18</aws.sdk.s3.version>
+        <aws.sdk.s3.version>1.12.261</aws.sdk.s3.version>
         <aws.sdk.s3.core.version>1.11.220</aws.sdk.s3.core.version>
         <springfox-swagger.version>2.9.2</springfox-swagger.version>
         <spring-boot-admin.version>2.1.6</spring-boot-admin.version>
