@@ -17,7 +17,7 @@
     <properties>
         <java.version>1.8</java.version>
         <jsonwebtoken.version>0.9.0</jsonwebtoken.version>
-        <commons.version>1.9.3</commons.version>
+        <commons.version>1.9.4</commons.version>
         <model.mapper.version>2.3.2</model.mapper.version>
         <hibernate-java-8-version>5.1.0.Final</hibernate-java-8-version>
         <thymeleaf.version>3.0.11.RELEASE</thymeleaf.version>
