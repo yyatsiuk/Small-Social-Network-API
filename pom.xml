@@ -20,7 +20,7 @@
         <commons.version>1.9.3</commons.version>
         <model.mapper.version>2.3.2</model.mapper.version>
         <hibernate-java-8-version>5.1.0.Final</hibernate-java-8-version>
-        <thymeleaf.version>3.0.11.RELEASE</thymeleaf.version>
+        <thymeleaf.version>3.0.13.RELEASE</thymeleaf.version>
         <google.api.client.version>1.22.0</google.api.client.version>
         <sping.social.facebook.version>2.0.3.RELEASE</sping.social.facebook.version>
         <spring.social.core>1.1.6.RELEASE</spring.social.core>
